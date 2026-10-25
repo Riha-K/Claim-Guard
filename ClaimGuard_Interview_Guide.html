@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClaimGuard — Interview Guide | Riha Sanjay Kokode</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c10;--surface:#111318;--card:#161a22;--border:#232836;--text:#dde3f0;--muted:#6b7694;--bright:#fff;--blue:#5b9cf6;--gold:#f0b429;--green:#3ecf8e;--red:#f04e4e;--purple:#b57bee;--teal:#38d9d9;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Lora',Georgia,serif;font-size:15px;line-height:1.8;}
+.topbar{position:sticky;top:0;z-index:200;background:rgba(10,12,16,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.topbar-inner{display:flex;align-items:center;padding:0 24px;overflow-x:auto;scrollbar-width:none;}
+.topbar-inner::-webkit-scrollbar{display:none;}
+.topbar-brand{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;color:var(--gold);white-space:nowrap;padding:14px 20px 14px 0;border-right:1px solid var(--border);margin-right:12px;}
+.topbar a{display:block;padding:13px 12px;text-decoration:none;color:var(--muted);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.5px;white-space:nowrap;border-bottom:2px solid transparent;text-transform:uppercase;}
+.topbar a:hover{color:var(--bright);border-color:var(--gold);}
+.hero{background:linear-gradient(135deg,#0a0c10 0%,#0d1119 40%,#101520 100%);padding:56px 48px 44px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(91,156,246,.08) 0%,transparent 65%);pointer-events:none;}
+.hero-eyebrow{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,5vw,3.2rem);font-weight:800;color:var(--bright);line-height:1.05;}
+.hero h1 em{font-style:normal;color:var(--blue);}
+.hero-sub{margin-top:12px;color:var(--muted);font-size:14px;max-width:760px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.hero-tag{background:rgba(91,156,246,.1);border:1px solid rgba(91,156,246,.25);color:var(--blue);font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;}
+.main{max-width:1000px;margin:0 auto;padding:0 28px 100px;}
+.section{padding-top:60px;}
+[id]{scroll-margin-top:54px;}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.sec-title{font-family:'Syne',sans-serif;font-size:1.75rem;font-weight:800;color:var(--bright);margin-bottom:6px;line-height:1.1;}
+.sec-intro{color:#a8b4cc;font-size:14.5px;line-height:1.85;margin-bottom:24px;max-width:840px;border-left:3px solid var(--border);padding-left:16px;}
+.sec-intro strong{color:var(--bright);}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;}
+.concept-grid.three-col{grid-template-columns:repeat(3,1fr);}
+@media(max-width:680px){.concept-grid,.concept-grid.three-col,.six-grid,.split-two{grid-template-columns:1fr;}}
+.concept-card{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--blue);border-radius:8px;padding:20px;}
+.concept-card.gold{border-top-color:var(--gold);}
+.concept-card.green{border-top-color:var(--green);}
+.concept-card.teal{border-top-color:var(--teal);}
+.concept-card.purple{border-top-color:var(--purple);}
+.concept-card.red{border-top-color:var(--red);}
+.concept-card h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:800;color:var(--bright);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;}
+.concept-card p,.concept-card ul,.concept-card ol{color:#9daabf;font-size:13px;line-height:1.75;}
+.concept-card p+p{margin-top:8px;}
+.concept-card ul,.concept-card ol{padding-left:0;list-style:none;}
+.concept-card ul li,.concept-card ol li{padding:2px 0 2px 14px;position:relative;}
+.concept-card ul li::before{content:'›';position:absolute;left:0;color:var(--gold);}
+.concept-card strong{color:var(--bright);}
+.flow-container{display:flex;align-items:flex-start;flex-wrap:wrap;gap:6px;margin-bottom:24px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;}
+.flow-step{flex:1;min-width:90px;background:rgba(91,156,246,.07);border:1px solid rgba(91,156,246,.2);border-radius:8px;padding:12px 8px;text-align:center;}
+.flow-icon{font-size:1.3rem;margin-bottom:5px;}
+.flow-name{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;color:var(--bright);margin-bottom:3px;}
+.flow-desc{font-size:10px;color:var(--muted);line-height:1.4;}
+.flow-arrow{align-self:center;color:var(--gold);font-size:1.1rem;padding:0 4px;flex-shrink:0;}
+.code-block{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#79c0ff;margin-top:8px;overflow-x:auto;white-space:pre;}
+.comparison-table{overflow-x:auto;margin:14px 0;}
+.comparison-table table{width:100%;border-collapse:collapse;}
+.comparison-table th{background:rgba(91,156,246,.08);color:var(--blue);font-family:'Syne',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);}
+.comparison-table td{padding:9px 12px;border-bottom:1px solid rgba(35,40,54,.5);font-size:12.5px;color:#9daabf;vertical-align:top;}
+.comparison-table strong{color:var(--bright);}
+.qa-block{margin:14px 0;}
+.qa{margin-bottom:14px;}
+.q{background:rgba(240,180,41,.07);border:1px solid rgba(240,180,41,.2);border-radius:6px 6px 0 0;padding:11px 16px;font-family:'Syne',sans-serif;font-size:12.5px;font-weight:700;color:var(--gold);}
+.a{background:var(--card);border:1px solid var(--border);border-top:none;border-radius:0 0 6px 6px;padding:13px 16px;font-size:13px;color:#9daabf;line-height:1.8;}
+.a strong{color:var(--green);}
+.a a{color:var(--blue);}
+.script-box{background:rgba(91,156,246,.06);border:1px solid rgba(91,156,246,.2);border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:18px 22px;margin:14px 0;font-size:14px;color:#c8d4e8;line-height:1.9;font-style:italic;}
+.script-box strong{color:var(--bright);font-style:normal;}
+.highlight-box{background:rgba(240,78,78,.05);border:1px solid rgba(240,78,78,.2);border-left:4px solid var(--red);border-radius:0 8px 8px 0;padding:14px 18px;margin:14px 0;font-size:13px;color:#c8a4a4;}
+.highlight-box strong{color:var(--bright);}
+.tip-box{background:rgba(62,207,142,.06);border:1px solid rgba(62,207,142,.2);border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:14px 18px;margin:14px 0;font-size:13px;color:#9dbfb0;}
+.tip-box strong{color:var(--bright);}
+.six-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0;}
+.six-item{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px 16px;}
+.six-item .n{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);font-weight:600;margin-bottom:4px;}
+.six-item h5{font-family:'Syne',sans-serif;font-size:12px;color:var(--bright);margin-bottom:6px;}
+.six-item p{font-size:12.5px;color:#9daabf;line-height:1.65;}
+.split-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+.scrolltop{position:fixed;bottom:24px;right:24px;background:var(--gold);color:#000;border:none;cursor:pointer;width:42px;height:42px;border-radius:50%;font-size:1.1rem;z-index:999;}
+.code-inline{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--teal);}
+.mermaid{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:16px;margin:12px 0;}
+</style>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark', themeVariables: { primaryColor: '#1a2332', primaryTextColor: '#dde3f0', primaryBorderColor: '#5b9cf6', lineColor: '#f0b429', secondaryColor: '#161a22', tertiaryColor: '#0d1117' }});
+</script>
+</head>
+<body>
+
+<div class="topbar"><div class="topbar-inner">
+  <div class="topbar-brand">ClaimGuard</div>
+  <a href="#path">Path</a>
+  <a href="#pitch">Pitch</a>
+  <a href="#agentic">Agentic</a>
+  <a href="#flow">Flow</a>
+  <a href="#tools">Tools</a>
+  <a href="#rag">RAG</a>
+  <a href="#decide">Decide</a>
+  <a href="#stack">Stack</a>
+  <a href="#honest">Honesty</a>
+  <a href="#qa">Q&amp;A</a>
+  <a href="#eval">Eval</a>
+  <a href="#repo">Repo</a>
+</div></div>
+
+<div class="hero">
+  <div class="hero-eyebrow">Project interview guide · Riha Sanjay Kokode</div>
+  <h1>ClaimGuard<br><em>Agentic claim triage</em></h1>
+  <p class="hero-sub">Multi-step insurance claim intake: RAG policy retrieval, rule-based fraud checks, document checklist, then an LLM summary with a full tool trace. Built for “agentic AI / RAG / tools” interviews.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">Agentic workflow</span>
+    <span class="hero-tag">RAG / ChromaDB</span>
+    <span class="hero-tag">Tool calling</span>
+    <span class="hero-tag">Fraud heuristics</span>
+    <span class="hero-tag">Streamlit</span>
+    <span class="hero-tag">Ollama</span>
+  </div>
+</div>
+
+<div class="main">
+
+<div id="path" class="section">
+  <div class="sec-label">00</div>
+  <h2 class="sec-title">How to study (45 minutes)</h2>
+  <div class="six-grid">
+    <div class="six-item"><div class="n">5 min</div><h5>Pitch</h5><p>One sentence: tools first, then grounded LLM triage.</p></div>
+    <div class="six-item"><div class="n">10 min</div><h5>Agentic vs chatbot</h5><p>Fixed graph, observable tools, why not one prompt.</p></div>
+    <div class="six-item"><div class="n">10 min</div><h5>Three tools</h5><p>search_policy, fraud_heuristic, checklist + decision rules.</p></div>
+    <div class="six-item"><div class="n">10 min</div><h5>Code walk</h5><p><code>tools.py</code> → <code>agent.py</code> → <code>llm.py</code> → Streamlit.</p></div>
+    <div class="six-item"><div class="n">5 min</div><h5>Honesty</h5><p>Not LangGraph/MCP yet. Heuristics ≠ ML fraud model.</p></div>
+    <div class="six-item"><div class="n">5 min</div><h5>Eval</h5><p>12 cases in <code>eval/test_cases.md</code>.</p></div>
+  </div>
+</div>
+
+<div id="pitch" class="section">
+  <div class="sec-label">01</div>
+  <h2 class="sec-title">Elevator pitch (45–60 seconds)</h2>
+  <div class="script-box">
+    “<strong>ClaimGuard</strong> is an agentic insurance claim triage assistant. Free-text claims go through a fixed tool graph: I retrieve policy clauses with RAG, run explicit fraud heuristics, and build a document checklist. Only after those tools finish does the LLM write a short recommendation — approve for review, need docs, or escalate — citing the tool evidence. The Streamlit UI shows every tool call so an analyst can audit the path. So it is not a single chatbot answer; it is retrieve, check, decide, then explain.”
+  </div>
+  <div class="tip-box"><strong>Resume one-liner:</strong> ClaimGuard: multi-step AI agent for insurance claim triage with RAG policy retrieval, rule-based fraud checks, document checklist tools, and an auditable tool trace.</div>
+</div>
+
+<div id="agentic" class="section">
+  <div class="sec-label">02</div>
+  <h2 class="sec-title">What “agentic” means here</h2>
+  <p class="sec-intro">Interviewers asking for LangGraph / MCP / agent frameworks want to hear: <strong>planning + tools + grounding + observability</strong>. ClaimGuard implements that pattern with a custom fixed graph (easy to defend end to end).</p>
+  <div class="concept-grid">
+    <div class="concept-card green">
+      <h4>What we do</h4>
+      <ul>
+        <li>Parse fields from free text</li>
+        <li>Call tools in a defined order</li>
+        <li>Decide recommendation from tool outputs</li>
+        <li>LLM summarizes only from the tool bundle</li>
+        <li>Log every tool input/output (trace)</li>
+      </ul>
+    </div>
+    <div class="concept-card red">
+      <h4>What we are not claiming</h4>
+      <ul>
+        <li>Not LangGraph / CrewAI / AutoGen</li>
+        <li>Not MCP servers yet</li>
+        <li>Not a trained fraud neural net</li>
+        <li>Not full insurance underwriting automation</li>
+        <li>Not free-form multi-agent debate</li>
+      </ul>
+    </div>
+  </div>
+  <div class="highlight-box"><strong>Say this:</strong> “I built a transparent tool-calling agent. Production could swap the orchestrator for LangGraph; the tools and RAG stay the same.”</div>
+</div>
+
+<div id="flow" class="section">
+  <div class="sec-label">03</div>
+  <h2 class="sec-title">End-to-end flow</h2>
+  <div class="flow-container">
+    <div class="flow-step"><div class="flow-icon">1</div><div class="flow-name">Parse</div><div class="flow-desc">claim type, amount, docs, priors</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-icon">2</div><div class="flow-name">search_policy</div><div class="flow-desc">Chroma RAG chunks</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-icon">3</div><div class="flow-name">fraud_heuristic</div><div class="flow-desc">risk + flags</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-icon">4</div><div class="flow-name">checklist</div><div class="flow-desc">required vs missing</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-icon">5</div><div class="flow-name">Decide</div><div class="flow-desc">escalate / need_docs / approve</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="flow-icon">6</div><div class="flow-name">LLM</div><div class="flow-desc">grounded summary + UI trace</div></div>
+  </div>
+  <div class="mermaid">
+flowchart LR
+  U[Claim text] --> P[parse_claim_fields]
+  P --> SP[search_policy]
+  P --> FH[fraud_heuristic]
+  P --> CL[checklist]
+  SP --> D{risk high?}
+  FH --> D
+  CL --> D
+  D -->|yes| E[escalate]
+  D -->|missing docs| N[need_docs]
+  D -->|else| A[approve_for_review]
+  E --> L[generate_triage]
+  N --> L
+  A --> L
+  L --> UI[Streamlit + tool_trace]
+  </div>
+</div>
+
+<div id="tools" class="section">
+  <div class="sec-label">04</div>
+  <h2 class="sec-title">The three tools</h2>
+  <div class="concept-grid three-col">
+    <div class="concept-card teal">
+      <h4>search_policy</h4>
+      <p>Query Chroma with the claim text. Return top-k chunks with source file + score + truncated text. Grounds coverage answers in markdown KB.</p>
+    </div>
+    <div class="concept-card gold">
+      <h4>fraud_heuristic</h4>
+      <p>Explicit rules: many claims in 30 days, claim soon after policy start, high amount thresholds, third-party without police report. Returns risk low/medium/high + flags.</p>
+    </div>
+    <div class="concept-card purple">
+      <h4>checklist</h4>
+      <p>Per claim type required docs (auto vs health). Third-party auto adds police_report. Returns required / provided / missing / complete.</p>
+    </div>
+  </div>
+  <div class="comparison-table">
+    <table>
+      <tr><th>Claim type</th><th>Core required docs</th></tr>
+      <tr><td><strong>auto_collision</strong></td><td>claim_form, driving_license, vehicle_rc, damage_photos, repair_estimate (+ police_report if third party)</td></tr>
+      <tr><td><strong>health_hospitalization</strong></td><td>claim_form, discharge_summary, hospital_bills, investigation_reports, insured_kyc</td></tr>
+    </table>
+  </div>
+  <div class="tip-box"><strong>Field parse:</strong> lightweight regex / keyword extract for amount, days since policy, prior claims, third party, FIR/police, doc tokens. Demo-friendly, not NER production.</div>
+</div>
+
+<div id="rag" class="section">
+  <div class="sec-label">05</div>
+  <h2 class="sec-title">Knowledge base + RAG</h2>
+  <p class="sec-intro">Markdown under <code>knowledge_base/</code> is ingested into ChromaDB with <span class="code-inline">all-MiniLM-L6-v2</span>. Edit policy text → Reindex in the UI. No fine-tune needed for KB updates.</p>
+  <div class="concept-grid">
+    <div class="concept-card">
+      <h4>Files in the KB</h4>
+      <ul>
+        <li>auto_collision.md</li>
+        <li>health_claims.md</li>
+        <li>fraud_signals.md</li>
+        <li>document_checklist.md</li>
+        <li>triage_rules.md</li>
+      </ul>
+    </div>
+    <div class="concept-card green">
+      <h4>Why this design</h4>
+      <p>Same pattern as PolicyPilot: retrieve then answer. ClaimGuard adds tools around retrieval so the decision is rule-backed, not “LLM vibes only.”</p>
+    </div>
+  </div>
+</div>
+
+<div id="decide" class="section">
+  <div class="sec-label">06</div>
+  <h2 class="sec-title">How the recommendation is chosen</h2>
+  <p class="sec-intro">Decision logic is in code (not left to the LLM). The LLM only explains.</p>
+  <div class="code-block">if fraud.risk == "high":
+    recommendation = "escalate"
+elif not checklist.complete:
+    recommendation = "need_docs"
+else:
+    recommendation = "approve_for_review"</div>
+  <div class="concept-grid three-col">
+    <div class="concept-card red"><h4>escalate</h4><p>High fraud risk flags (priors, early claim, high amount, missing police on TP, etc.).</p></div>
+    <div class="concept-card gold"><h4>need_docs</h4><p>Required documents missing after checklist.</p></div>
+    <div class="concept-card green"><h4>approve_for_review</h4><p>Docs complete and risk not high. Still human review, not auto-pay.</p></div>
+  </div>
+</div>
+
+<div id="stack" class="section">
+  <div class="sec-label">07</div>
+  <h2 class="sec-title">Stack and file map</h2>
+  <div class="comparison-table">
+    <table>
+      <tr><th>Piece</th><th>Choice</th><th>Why</th></tr>
+      <tr><td>UI</td><td>Streamlit</td><td>Fast demo + tool-trace display</td></tr>
+      <tr><td>Vectors</td><td>ChromaDB + MiniLM</td><td>Local RAG, same embedding family as PolicyPilot</td></tr>
+      <tr><td>LLM</td><td>Ollama</td><td>Fully local chat model</td></tr>
+      <tr><td>Orchestration</td><td>Custom fixed graph</td><td>Clear, auditable; easy to explain without framework magic</td></tr>
+    </table>
+  </div>
+  <div class="comparison-table">
+    <table>
+      <tr><th>File</th><th>Open when they ask…</th></tr>
+      <tr><td><code>app/tools.py</code></td><td>Tools, parse, decision rules</td></tr>
+      <tr><td><code>app/agent.py</code></td><td>Orchestration graph</td></tr>
+      <tr><td><code>app/rag.py</code></td><td>Ingest + retrieve</td></tr>
+      <tr><td><code>app/llm.py</code></td><td>Grounded summary prompt</td></tr>
+      <tr><td><code>app/streamlit_app.py</code></td><td>UI + reindex</td></tr>
+      <tr><td><code>eval/test_cases.md</code></td><td>Manual eval suite</td></tr>
+    </table>
+  </div>
+</div>
+
+<div id="honest" class="section">
+  <div class="sec-label">08</div>
+  <h2 class="sec-title">Honesty — what to say / not say</h2>
+  <div class="highlight-box">
+    <strong>True:</strong> multi-step tool agent, RAG over policy markdown, rule-based fraud flags, checklist-driven need_docs, LLM summary grounded on tools, Streamlit audit trace, local Ollama.
+    <br><br>
+    <strong>Do not invent:</strong> LangGraph, MCP, knowledge graphs, production insurer deployment, trained fraud ML, automatic payouts, legal advice, perfect field extraction.
+    <br><br>
+    <strong>approve_for_review</strong> means ready for a human analyst — not auto-approve payment.
+  </div>
+  <div class="split-two">
+    <div class="concept-card green">
+      <h4>Windflow / agentic roles</h4>
+      <p>Lead with tool graph + observability + RAG. Say you can migrate the graph to LangGraph; tools already exist.</p>
+    </div>
+    <div class="concept-card">
+      <h4>vs PolicyPilot</h4>
+      <p>PolicyPilot = RAG Q&amp;A on CX policy. ClaimGuard = RAG + extra tools + triage decision for claims. Same retrieval idea, more agentic.</p>
+    </div>
+  </div>
+</div>
+
+<div id="qa" class="section">
+  <div class="sec-label">09</div>
+  <h2 class="sec-title">Likely interview Q&amp;A</h2>
+  <div class="qa-block">
+    <div class="qa">
+      <div class="q">Q: Explain your agentic / AI project.</div>
+      <div class="a">ClaimGuard: claim text → parse fields → search_policy (RAG) → fraud_heuristic → checklist → code picks escalate / need_docs / approve_for_review → LLM writes a short grounded note. UI shows the tool trace.</div>
+    </div>
+    <div class="qa">
+      <div class="q">Q: Why tools before the LLM?</div>
+      <div class="a">So decisions come from inspectable rules and retrieved text, not a free-form model guess. The LLM’s job is explanation, not inventing risk or coverage.</div>
+    </div>
+    <div class="qa">
+      <div class="q">Q: Is fraud detection ML?</div>
+      <div class="a"><strong>No.</strong> Explicit heuristics (priors, early claim, amount thresholds, missing police report). Honest and debuggable. Could later add an ML score as another tool.</div>
+    </div>
+    <div class="qa">
+      <div class="q">Q: How do you update policies?</div>
+      <div class="a">Edit markdown in knowledge_base/, click Reindex. RAG updates without fine-tuning.</div>
+    </div>
+    <div class="qa">
+      <div class="q">Q: Why not LangGraph?</div>
+      <div class="a">I wanted a small, fully owned graph I can defend line by line. The pattern matches LangGraph (nodes = tools, state = bundle). Porting is a next step, not a missing idea.</div>
+    </div>
+    <div class="qa">
+      <div class="q">Q: Failure modes?</div>
+      <div class="a">Bad field parse → wrong claim type or docs. Empty retrieval → weak policy citations. Rules miss novel fraud. Mitigation: show tool outputs, keep human in the loop, expand eval cases.</div>
+    </div>
+    <div class="qa">
+      <div class="q">Q: How is this different from a chatbot?</div>
+      <div class="a">A chatbot answers in one call. ClaimGuard always runs tools, records a trace, and constrains the recommendation with code. Auditability is the product feature.</div>
+    </div>
+  </div>
+</div>
+
+<div id="eval" class="section">
+  <div class="sec-label">10</div>
+  <h2 class="sec-title">Eval (12 starter cases)</h2>
+  <p class="sec-intro">Manual pass/fail against expected recommendation in <code>eval/test_cases.md</code>. Examples: complete auto TP → approve_for_review; missing police → need_docs or escalate; 2 priors + high amount → escalate; health with only claim_form → need_docs.</p>
+  <div class="tip-box"><strong>Interview line:</strong> “I keep a small eval sheet of expected triage labels and score the Streamlit runs by recommendation match.”</div>
+</div>
+
+<div id="repo" class="section">
+  <div class="sec-label">11</div>
+  <h2 class="sec-title">Repo / run</h2>
+  <div class="qa-block">
+    <div class="qa">
+      <div class="q">Q: Share the repository.</div>
+      <div class="a">
+        <a href="https://github.com/Riha-K/Claim-Guard" target="_blank" rel="noopener">https://github.com/Riha-K/Claim-Guard</a><br><br>
+        Run: <span class="code-inline">streamlit run app/streamlit_app.py</span> after <span class="code-inline">pip install -r requirements.txt</span>, starting Ollama, and copying <span class="code-inline">.env.example</span> to <span class="code-inline">.env</span>. First time: Reindex knowledge base.
+      </div>
+    </div>
+  </div>
+  <div class="tip-box"><strong>Day-before checklist:</strong> (1) Recite pitch. (2) Draw the six-step flow. (3) Name three tools + decision if/elif. (4) Contrast vs single-call chatbot and vs PolicyPilot. (5) Say what you would add next (LangGraph / better parsing / ML fraud tool).</div>
+</div>
+
+</div>
+<button class="scrolltop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</body>
+</html>
