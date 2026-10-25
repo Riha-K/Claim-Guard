@@ -22,7 +22,7 @@ ClaimGuard: multi-step AI agent for insurance claim triage with RAG policy retri
 - Python
 - Streamlit
 - ChromaDB + sentence-transformers (`all-MiniLM-L6-v2`)
-- OpenAI API or local Ollama
+- Local Ollama
 - Custom agent orchestration (fixed tool graph with observable calls)
 
 ## Setup
@@ -35,7 +35,7 @@ pip install -r requirements.txt
 copy .env.example .env
 ```
 
-Fill `.env` with either `OPENAI_API_KEY` or a running Ollama model.
+Start Ollama, pull a model (default `llama3.2`), and copy `.env.example` to `.env`.
 
 ## Run
 
