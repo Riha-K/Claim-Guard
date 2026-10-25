@@ -4,7 +4,6 @@ import json
 from typing import Any
 
 import httpx
-from openai import OpenAI
 
 from app.config import settings
 
@@ -24,10 +23,6 @@ Rules:
 """.strip()
 
 
-def _openai_client() -> OpenAI:
-    return OpenAI(api_key=settings.openai_api_key, base_url=settings.openai_base_url)
-
-
 def generate_triage(user_message: str, tool_bundle: dict[str, Any]) -> str:
     payload = {
         "user_message": user_message,
@@ -38,19 +33,6 @@ def generate_triage(user_message: str, tool_bundle: dict[str, Any]) -> str:
         + json.dumps(payload, indent=2, ensure_ascii=True)
     )
 
-    if settings.use_openai:
-        client = _openai_client()
-        resp = client.chat.completions.create(
-            model=settings.openai_model,
-            temperature=0.2,
-            messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_content},
-            ],
-        )
-        return (resp.choices[0].message.content or "").strip()
-
-    # Ollama OpenAI-compatible chat endpoint
     url = settings.ollama_base_url.rstrip("/") + "/v1/chat/completions"
     body = {
         "model": settings.ollama_model,
