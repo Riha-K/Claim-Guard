@@ -27,7 +27,7 @@ agent = get_agent()
 
 with st.sidebar:
     st.header("Setup")
-    st.write(f"LLM: {'OpenAI ' + settings.openai_model if settings.use_openai else 'Ollama ' + settings.ollama_model}")
+    st.write(f"LLM: Ollama {settings.ollama_model}")
     st.write(f"Embeddings: {settings.embedding_model}")
     if st.button("Reindex knowledge base"):
         with st.spinner("Indexing..."):
