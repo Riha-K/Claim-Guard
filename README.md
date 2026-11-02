@@ -68,3 +68,5 @@ eval/             sample questions and expected decisions
 ## Eval
 
 See `eval/test_cases.md` for 12 starter cases. Mark pass/fail by recommendation match.
+
+<!-- refreshed: 2026-11-02 -->
