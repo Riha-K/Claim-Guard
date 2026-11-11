@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClaimGuard — Interview Guide | Riha Sanjay Kokode</title>
+<title>ClaimGuard - Interview Guide | Riha Sanjay Kokode</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0c10;--surface:#111318;--card:#161a22;--border:#232836;--text:#dde3f0;--muted:#6b7694;--bright:#fff;--blue:#5b9cf6;--gold:#f0b429;--green:#3ecf8e;--red:#f04e4e;--purple:#b57bee;--teal:#38d9d9;}
@@ -137,7 +137,7 @@ body{background:var(--bg);color:var(--text);font-family:'Lora',Georgia,serif;fon
   <div class="sec-label">01</div>
   <h2 class="sec-title">Elevator pitch (45–60 seconds)</h2>
   <div class="script-box">
-    “<strong>ClaimGuard</strong> is an agentic insurance claim triage assistant. Free-text claims go through a fixed tool graph: I retrieve policy clauses with RAG, run explicit fraud heuristics, and build a document checklist. Only after those tools finish does the LLM write a short recommendation — approve for review, need docs, or escalate — citing the tool evidence. The Streamlit UI shows every tool call so an analyst can audit the path. So it is not a single chatbot answer; it is retrieve, check, decide, then explain.”
+    “<strong>ClaimGuard</strong> is an agentic insurance claim triage assistant. Free-text claims go through a fixed tool graph: I retrieve policy clauses with RAG, run explicit fraud heuristics, and build a document checklist. Only after those tools finish does the LLM write a short recommendation - approve for review, need docs, or escalate - citing the tool evidence. The Streamlit UI shows every tool call so an analyst can audit the path. So it is not a single chatbot answer; it is retrieve, check, decide, then explain.”
   </div>
   <div class="tip-box"><strong>Resume one-liner:</strong> ClaimGuard: multi-step AI agent for insurance claim triage with RAG policy retrieval, rule-based fraud checks, document checklist tools, and an auditable tool trace.</div>
 </div>
@@ -299,13 +299,13 @@ else:
 
 <div id="honest" class="section">
   <div class="sec-label">08</div>
-  <h2 class="sec-title">Honesty — what to say / not say</h2>
+  <h2 class="sec-title">Honesty - what to say / not say</h2>
   <div class="highlight-box">
     <strong>True:</strong> multi-step tool agent, RAG over policy markdown, rule-based fraud flags, checklist-driven need_docs, LLM summary grounded on tools, Streamlit audit trace, local Ollama.
     <br><br>
     <strong>Do not invent:</strong> LangGraph, MCP, knowledge graphs, production insurer deployment, trained fraud ML, automatic payouts, legal advice, perfect field extraction.
     <br><br>
-    <strong>approve_for_review</strong> means ready for a human analyst — not auto-approve payment.
+    <strong>approve_for_review</strong> means ready for a human analyst - not auto-approve payment.
   </div>
   <div class="split-two">
     <div class="concept-card green">
@@ -329,13 +329,13 @@ else:
       <div class="q">Q: Why RAG instead of fine-tuning?</div>
       <div class="a">
         Claim/policy clauses change (coverage, docs, fraud notes). Fine-tuning would stale quickly and give no auditable quote of which clause was used.<br><br>
-        RAG stores markdown in <code>knowledge_base/</code>, retrieves at triage time, and the LLM must <strong>cite source file names</strong>. Updates = edit markdown + Reindex — no retrain. Fine-tune could help writing style later; facts stay in RAG. The <strong>decision</strong> (escalate / need_docs / approve_for_review) is still rule-based in code — RAG grounds the explanation, not the fraud math.
+        RAG stores markdown in <code>knowledge_base/</code>, retrieves at triage time, and the LLM must <strong>cite source file names</strong>. Updates = edit markdown + Reindex - no retrain. Fine-tune could help writing style later; facts stay in RAG. The <strong>decision</strong> (escalate / need_docs / approve_for_review) is still rule-based in code - RAG grounds the explanation, not the fraud math.
       </div>
     </div>
     <div class="qa">
       <div class="q">Q: How did you decide chunk size?</div>
       <div class="a">
-        Same practical defaults as PolicyPilot: <strong>700 characters</strong> with <strong>120 overlap</strong>, top-k <strong>4</strong>. Insurance markdown is sectioned (auto collision, health, fraud signals, checklists). Chunks need to hold a full rule without flooding the tool output / LLM context. Overlap protects clauses that sit on boundaries. I would retune if a known clause never appeared in <code>search_policy</code> hits — not because a blog said “500 tokens.”
+        Same practical defaults as PolicyPilot: <strong>700 characters</strong> with <strong>120 overlap</strong>, top-k <strong>4</strong>. Insurance markdown is sectioned (auto collision, health, fraud signals, checklists). Chunks need to hold a full rule without flooding the tool output / LLM context. Overlap protects clauses that sit on boundaries. I would retune if a known clause never appeared in <code>search_policy</code> hits - not because a blog said “500 tokens.”
       </div>
     </div>
     <div class="qa">
@@ -348,14 +348,14 @@ else:
     <div class="qa">
       <div class="q">Q: How did you evaluate retrieval quality?</div>
       <div class="a">
-        Two layers: (1) <strong>Triage eval</strong> — 12 cases in <code>eval/test_cases.md</code>, pass/fail on recommendation label (that’s decision quality, not IR). (2) <strong>Retrieval</strong> — inspect the tool trace: did <code>search_policy</code> return the right markdown source for that claim?<br><br>
+        Two layers: (1) <strong>Triage eval</strong> - 12 cases in <code>eval/test_cases.md</code>, pass/fail on recommendation label (that’s decision quality, not IR). (2) <strong>Retrieval</strong> - inspect the tool trace: did <code>search_policy</code> return the right markdown source for that claim?<br><br>
         I have not logged formal Precision@K / Recall@K / MRR / nDCG yet. Next step: golden (claim → expected policy file/chunk) and score retrieval separately from triage label and from LLM prose.
       </div>
     </div>
     <div class="qa">
       <div class="q">Q: How did you reduce hallucinations?</div>
       <div class="a">
-        (1) Tools run <strong>before</strong> the LLM — recommendation comes from fraud/checklist rules, not model whim. (2) LLM prompt: use only tool outputs; cite policy sources; no invented coverage amounts; say knowledge insufficient if retrieval empty. (3) UI <strong>tool trace</strong> makes wrong retrieval visible. (4) Human still in the loop (<code>approve_for_review</code> ≠ auto-pay). Prompt alone is not enough; rules + trace + grounding instructions stack.
+        (1) Tools run <strong>before</strong> the LLM - recommendation comes from fraud/checklist rules, not model whim. (2) LLM prompt: use only tool outputs; cite policy sources; no invented coverage amounts; say knowledge insufficient if retrieval empty. (3) UI <strong>tool trace</strong> makes wrong retrieval visible. (4) Human still in the loop (<code>approve_for_review</code> ≠ auto-pay). Prompt alone is not enough; rules + trace + grounding instructions stack.
       </div>
     </div>
     <div class="qa">
@@ -369,27 +369,27 @@ else:
       <div class="q">Q: How would you debug a RAG (or triage) answer that looks right but is wrong?</div>
       <div class="a">
         Stages: <strong>Parse → search_policy → fraud_heuristic → checklist → Decide → LLM → Trace</strong>.<br><br>
-        Wrong coverage quote? Check retrieval hits in the trace — wrong file → fix chunking/query/KB. Right clause but bad story? Tighten LLM prompt. Wrong escalate/need_docs? That’s <strong>rules</strong>, not RAG — inspect fraud flags and missing docs. Wrong claim_type? Fix field parse. Looking only at the final paragraph hides which stage failed.
+        Wrong coverage quote? Check retrieval hits in the trace - wrong file → fix chunking/query/KB. Right clause but bad story? Tighten LLM prompt. Wrong escalate/need_docs? That’s <strong>rules</strong>, not RAG - inspect fraud flags and missing docs. Wrong claim_type? Fix field parse. Looking only at the final paragraph hides which stage failed.
       </div>
     </div>
     <div class="qa">
       <div class="q">Q: How do you know your retrieval is good?</div>
       <div class="a">
-        I read the <strong>tool trace</strong> for <code>search_policy</code>: right source file (auto vs health vs fraud notes), useful score gap vs weak hits, and text that actually supports the LLM’s citations. A correct triage label alone is <strong>not</strong> proof retrieval worked — rules can escalate without good policy chunks.<br><br>
+        I read the <strong>tool trace</strong> for <code>search_policy</code>: right source file (auto vs health vs fraud notes), useful score gap vs weak hits, and text that actually supports the LLM’s citations. A correct triage label alone is <strong>not</strong> proof retrieval worked - rules can escalate without good policy chunks.<br><br>
         Separate checks: golden claim → expected KB file (retrieval), vs eval/test_cases.md labels (decision). Formal Recall@K not logged yet.
       </div>
     </div>
     <div class="qa">
       <div class="q">Q: How many queries did you test?</div>
       <div class="a">
-        <strong>12 labeled triage cases</strong> in <code>eval/test_cases.md</code> (pass/fail on recommend). For retrieval specifically, I smoke-test those same prompts plus a few paraphrases in Streamlit and inspect <code>search_policy</code> hits — on the order of <strong>~15–20</strong> claim texts, not a large IR benchmark.<br><br>
+        <strong>12 labeled triage cases</strong> in <code>eval/test_cases.md</code> (pass/fail on recommend). For retrieval specifically, I smoke-test those same prompts plus a few paraphrases in Streamlit and inspect <code>search_policy</code> hits - on the order of <strong>~15–20</strong> claim texts, not a large IR benchmark.<br><br>
         Don’t inflate: the 12 are decision evals; retrieval QA is manual on top of them.
       </div>
     </div>
     <div class="qa">
       <div class="q">Q: What did the failed queries have in common?</div>
       <div class="a">
-        When retrieval or end-to-end looked wrong: (1) <strong>vague claims</strong> with no docs/amount — weak policy hits, triage falls to need_docs; (2) <strong>wrong claim_type parse</strong> so health text retrieves auto chunks; (3) coverage questions needing a specific exclusion clause that wasn’t in top-k; (4) “looks right” LLM prose citing a nearby but wrong file — caught only in the trace.<br><br>
+        When retrieval or end-to-end looked wrong: (1) <strong>vague claims</strong> with no docs/amount - weak policy hits, triage falls to need_docs; (2) <strong>wrong claim_type parse</strong> so health text retrieves auto chunks; (3) coverage questions needing a specific exclusion clause that wasn’t in top-k; (4) “looks right” LLM prose citing a nearby but wrong file - caught only in the trace.<br><br>
         Common theme: failure is often <strong>parse + retrieval scope</strong>, not only the LLM. Fix path: better field extract, type-scoped search, richer KB, then hybrid if exact phrases still miss.
       </div>
     </div>
